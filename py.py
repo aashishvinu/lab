@@ -7,7 +7,7 @@ for dirpath, dirnames, filenames in os.walk("."):
         for filename in filenames:
             if filename != "index.html" and filename.endswith(".txt"):  # Exclude the index file and .txt files from the listing
                 filename_without_extension, _ = os.path.splitext(filename)
-                index_file.write(f'<a href="{filename}">{filename_without_extension}</a><br>\n')
+                index_file.write(f'<a href="{filename}">{filename_without_extension}</a>\n')
 
         index_file.write('</body>\n</html>\n')  # Closing body tag here
 

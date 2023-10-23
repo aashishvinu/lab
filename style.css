@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background-color: #292A2D;
-}
-
-body h1 {
-    font-size: 20px;
-    color: #ffffff;
+    text-align: center;
 }
 
 a {
-    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 5px;
     text-decoration: none;
+    color: white;
+    text-align: left;
 }
 
 a:hover {
