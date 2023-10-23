@@ -8,6 +8,7 @@ body {
     height: 100vh;
     background-color: #292A2D;
     text-align: center;
+    overflow: hidden;
 }
 
 a {
