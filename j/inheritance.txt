@@ -1,0 +1,81 @@
+1. Define Employee class with attributes: name, age, phoneNumber, address, and salary.
+    1.1. Implement a method to print salary.
+
+2. Define Officer class inheriting from Employee:
+    2.1. Add attribute: specialization.
+    2.2. Implement a method to display officer details.
+
+3. Define Manager class inheriting from Employee:
+    3.1. Add attribute: department.
+    3.2. Implement a method to display manager details.
+
+4. In the main program:
+    4.1. Create an instance of Officer and set its attributes.
+    4.2. Create an instance of Manager and set its attributes.
+    4.3. Print the details of the Manager.
+    4.4. Print the details of the Officer.
+
+5. End
+
+--------------------------------------------------------------------------------------------------
+
+class Employee {
+    String name;
+    int age;
+    String phoneNumber;
+    String address;
+    double salary;
+
+    public void printSalary() {
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Officer extends Employee {
+    String specialization;
+    public void displayInfo() {
+        System.out.println("Name: "+ name);
+        System.out.println("Age: "+ age);
+        System.out.println("Phone Number: "+ phoneNumber);
+        System.out.println("Address: "+ address);
+        printSalary();
+        System.out.println("Specialization: "+ specialization);
+    }
+}
+
+class Manager extends Employee {
+    String department;
+    public void displayInfo(){
+        System.out.println("Name: "+ name);
+        System.out.println("Age: "+ age);
+        System.out.println("Phone Number: "+ phoneNumber);
+        System.out.println("Address: "+ address);
+        printSalary();
+        System.out.println("Department: "+ department);
+    }
+}
+
+public class Main {
+    public static void main(String[] args){
+        Officer officer = new Officer();
+        officer.name = "John";
+        officer.age = 23;
+        officer.phoneNumber = "123-909-2239";
+        officer.address = "9569 E Light Dr";
+        officer.salary = 50000;
+        officer.specialization = "Tech";
+
+        Manager manager = new Manager();
+        manager.name = "Doe";
+        manager.age = 23;
+        manager.phoneNumber = "123-909-2239";
+        manager.address = "94559 E Light Dr";
+        manager.salary = 90000;
+        manager.department = "Finance";
+
+        System.out.println("Manager Info");
+        manager.displayInfo();
+        System.out.println("Officer Info");
+        officer.displayInfo();
+    }
+}

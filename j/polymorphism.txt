@@ -1,0 +1,55 @@
+1. Define abstract class Shape:
+   - Abstract method numberOfSides()
+
+2. Define class Rectangle that extends Shape:
+   - Implement numberOfSides() to print "Rectangle has 4 sides."
+
+3. Define class Triangle that extends Shape:
+   - Implement numberOfSides() to print "Triangle has 3 sides."
+
+4. Define class Hexagon that extends Shape:
+   - Implement numberOfSides() to print "Hexagon has 6 sides."
+
+5. Define class Demo:
+   - In the main method:
+     - Create a Rectangle instance as a Shape reference.
+     - Create a Triangle instance as a Shape reference.
+     - Create a Hexagon instance as a Shape reference.
+     - Call numberOfSides() on each shape instance.
+       - The appropriate numberOfSides() method for each shape will be invoked.
+
+--------------------------------------------------------------------------------------------------
+
+abstract class Shape {
+    abstract void numberOfSides();
+}
+
+class Rectangle extends Shape {
+    void numberOfSides() {
+        System.out.println("Rectangle has 4 sides.");
+    }
+}
+
+class Triangle extends Shape {
+    void numberOfSides() {
+        System.out.println("Triangle has 3 sides.");
+    }
+}
+
+class Hexagon extends Shape {
+    void numberOfSides() {
+        System.out.println("Hexagon has 6 sides.");
+    }
+}
+
+public class Demo {
+    public static void main(String[] args) {
+        Shape rectangle = new Rectangle();
+        Shape triangle = new Triangle();
+        Shape hexagon = new Hexagon();
+
+        rectangle.numberOfSides();
+        triangle.numberOfSides();
+        hexagon.numberOfSides();
+    }
+}

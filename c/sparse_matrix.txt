@@ -1,0 +1,56 @@
+1. Declare the struct sparse to represent the sparse matrix elements, containing row, column, and value.
+2. Prompt the user to enter the number of rows and columns.
+3. Create a 2D array matrix of size row x col to hold the original matrix.
+4. Read elements of matrix 
+    If the element is non-zero, increment the size.
+5. Create an array of structures sp of size size to hold the sparse matrix.
+7. 6. Initialize an index variable (index) to 0.
+8. Iterate through each element of the matrix again:
+    If the element is non-zero, store its row, column, and value in the sp array at index index, and increment index.
+9. Print the sparse matrix in tabular format.
+
+--------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+struct sparse {
+    int row;
+    int col;
+    int value;
+};
+
+int main(){
+    int row, col, size = 0;
+    printf("Enter the no of rows and cols: ");
+    scanf("%d%d",&row, &col);
+
+    int matrix[row][col];
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < col; j++){
+            printf("[%d][%d]", i, j);
+            scanf("%d", &matrix[i][j]);
+            if (matrix[i][j] != 0){
+                size++;
+            }
+        }
+    }
+
+    struct sparse sp[size];
+    int index = 0;
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < col; j++){
+            if (matrix[i][j] != 0){
+                sp[index].row = i;
+                sp[index].col = j;
+                sp[index].value = matrix[i][j];
+                index++;
+            }
+        }
+    }
+
+    printf("Sparse matrix\n");
+    printf("|Row|Col|Value|\n");
+    for (int i = 0; i < size; i++){
+        printf("| %d | %d |  %d  |\n", sp[i].row, sp[i].col, sp[i].value);
+    }
+}

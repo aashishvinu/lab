@@ -1,0 +1,11 @@
+1. Start
+2. Create two object references: obj1, obj2.
+3. Allocate memory for two new Object instances and assign the references to obj1 and obj2.
+4. Set obj1 to null, releasing the reference to the first Object instance.
+5. Set obj2 to null, releasing the reference to the second Object instance.
+6. Request the garbage collector to run.
+7. Display "Garbage collection requested."
+8. End
+
+--------------------------------------------------------------------------------------------------
+

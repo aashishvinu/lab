@@ -1,0 +1,138 @@
+1. set global variables front and rear = -1 and declare max for storing the size
+2. Display the menu of queue operations to the user
+    b. Read the user's selection and perform the corresponding operation:
+        - If user selects enque, call enque( )
+        - If user selects dequeue, call dequeue()
+        - If user selects display, call display()
+        - If user selects Exit, terminate the program
+3. in enque function 
+	if (front == 0 && rear == max -1) || front == ++rear
+	   print "stack overflow"
+	   exit
+	if (front == -1)
+	   set front and rear to 0
+	else if (rear == max - 1)
+	   rear = 0;
+	else
+	    rear = ++rear;
+	Q[rear] = item;
+	
+4. in dequeue function
+	if front == -1
+	    print "queue underflow"
+	    exit
+	item = queue[front]
+	
+	if front == rear
+	    set front and rear to -1
+	if front == max - 1
+	    front++
+
+5. in display function
+	if top == -1
+	    print "empty stack"
+	else 
+	    print element elements of queue from front to rear
+6. repeats above steps untill user chose to terminate or program terminate automatically by stackoverflow or underflow condition
+
+--------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int rear = -1, front = -1, max;
+
+void enqueue(int value, int queue[]);
+void dequeue(int queue[]);
+void display(int queue[]);
+
+int main()
+{
+    int selection, value;
+    printf("Enter size of the queue: ");
+    scanf("%d", &max);
+    int queue[max];
+
+    while (1) {
+        printf("\nSelect operation to perform on stack\n");
+        printf("1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
+        printf(" : ");
+        scanf("%d", &selection);
+
+        switch (selection) {
+            case 1:
+                printf("Enter the value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(value, queue);
+                break;
+            case 2:
+                dequeue(queue);
+                break;
+            case 3:
+                display(queue);
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+}
+
+void enqueue(int value, int queue[])
+{
+    if ((front == 0 && rear == max -1) || (front == rear + 1)){
+        printf("\nQueue Overflow\n");
+        exit(0);
+    }
+    if (front == -1){
+        front = 0;
+        rear = 0;
+    }
+    else if (rear == max - 1){
+        rear = 0;
+    }
+    else {
+        rear++;
+    }
+    queue[rear] = value;
+}
+
+void dequeue(int queue[]){
+    if (front == -1){
+        printf("\nQueue Underflow\n");
+        exit(0);
+    }
+    int value = queue[front];
+
+    if (front == rear){
+        front = 0;
+        rear = 0;
+    }
+    if (front == max -1){
+        front++;
+    }
+    printf("%d has been deleted\n", value);
+}
+
+void display(int queue[])
+{
+    if (front == -1)
+    {
+        printf("\nQueue is empty\n");
+        exit(0);
+    }
+    if (front <= rear){
+        for (int i = front; i <= rear; i++){
+            printf("%d ",queue[i]);
+        }
+    }
+    else {
+        for (int i = front; i < max; i++){
+            printf("%d ",queue[i]);
+        }
+        for (int i = 0; i <= rear; i++){
+            printf("%d ",queue[i]);
+        }
+    }
+}

@@ -1,0 +1,37 @@
+1. Define constants for input and output file names
+2. Inside a try-catch block to handle IOException:
+    a. Create a BufferedReader to read from the input file (inputFile).
+    b. Create a BufferedWriter to write to the output file (outputFile).
+    c. Read each line from the input file using the BufferedReader:
+    i. If the line is not null, write the line to the output file followed by a newline character.
+    d. Close the BufferedReader and BufferedWriter.
+    e. Print a message indicating successful file content copying.
+3. Catch any IOException that occurs during file read/write operations and print an error me
+
+--------------------------------------------------------------------------------------------------
+
+import java.io.*;
+
+public class file{
+    public static void main(String[] args){
+        String inputFile = "input.txt";
+        String outputFile = "output.txt";
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+
+            String line;
+            while((line = reader.readLine()) != null){
+                writer.write(line + "\n");
+            }
+
+            reader.close();
+            writer.close();
+            System.out.println("File contents copied successfully");
+
+        } catch (IOException e){
+            System.err.println("An error occurred during file read/write operation");
+        }
+    }
+}
