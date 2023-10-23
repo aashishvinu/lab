@@ -4,7 +4,8 @@ for dirpath, dirnames, filenames in os.walk("."):
     with open(os.path.join(dirpath, "index.html"), "w") as index_file:
         index_file.write(
 """
-<html>\n<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>\n<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta property="og:title" content="Lab Programs and Algorithms"/>
 <meta property="og:description" content="Java & C" />
 <meta property="og:image" content="https://i.pinimg.com/564x/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.jpg" />
