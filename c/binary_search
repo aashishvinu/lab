@@ -1,0 +1,60 @@
+Binary Search
+
+1. start
+2. read sorted array arr, size as n and element to be searched for as key
+3. set start = 0, end = n
+4. Repeat the following steps while start is less than or equal to end
+   a. Calculate mid as (start + end) / 2
+   b. If arr[mid] is equal to key, then:
+        Print "Element found"
+   c. If key is less than arr[mid], then:
+        Set end to (mid - 1)
+   d. If key is greater than arr[mid], then:
+        Set start to (mid + 1)
+5. Print "Element not found" if loops ends without finding key
+
+--------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+int binarySearch(int arr[], int n, int key);
+int main()
+{
+    int n, key;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter array elements in ascending order\n");
+    for (int i = 0; i < n; i++){
+        printf("[%d]: ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter element to be searched: ");
+    scanf("%d", &key);
+    binarySearch(arr, n, key);
+}
+
+int binarySearch(int arr[], int n,int key)
+{
+    int mid, start = 0, end = n;
+    while (start <= end)
+    {
+        mid = (start + end) / 2;
+        if (arr[mid] == key)
+        {
+            printf("Element found at the index %d\n", mid);
+            return 0;
+        }
+        else if(key < arr[mid])
+        {
+            end = --mid;
+        }
+        else
+        {
+            start = ++mid;
+        }
+    }
+    printf("Element not found\n");
+    return 0;
+}
