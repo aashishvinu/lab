@@ -14,9 +14,9 @@ body {
 a {
     font-size: 25px;
     margin-bottom: 5px;
-    text-decoration: none;
     color: white;
     text-align: left;
+    text-decoration: none;
 }
 
 a:hover {

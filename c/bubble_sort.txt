@@ -1,0 +1,48 @@
+1. Start
+2. Read the size of the array, n
+3. Declare an integer array arr of size 20 (or dynamically based on n if needed)
+4. Read n numbers from the user and store them in the arr array
+5. For i from 0 to n-2 do the following:
+    For j from 0 to n-i-2 do the following:
+    If arr[j] is greater than arr[j+1] then:
+    Swap arr[j] and arr[j+1]
+6. Print the sorted array
+7. End
+
+--------------------------------------------------------------------------------------------------
+
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[20], n, temp;
+    printf("Enter the size of array: ");
+    scanf("%d", &n);
+    printf("Enter array elements\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+               temp = arr[j];
+               arr[j] = arr[j + 1];
+               arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    printf("Sorted array\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d, ", arr[i]);
+    }
+    printf("\n");
+}
+

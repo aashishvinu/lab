@@ -1,0 +1,42 @@
+1. Start
+2. Read the size of the array, n
+3. Declare an integer array arr of size 20 (or dynamically based on n if needed)
+4. Read n numbers from the user and store them in the arr array
+5. Read the key element to be searched for, key
+6. For i from 0 to n-1 do the following:
+7. If arr[i] is equal to key then:
+    Print "Element found"
+    Exit the program
+8 .If the loop completes without finding the key, print "Element not found"
+9 .End
+
+--------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[20], key, n;
+    printf("Enter the size of array: ");
+    scanf("%d", &n);
+    printf("Enter array elements\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter the element to be searched: ");
+    scanf("%d", &key);
+    
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == key)
+        {
+             printf("Element found\n");
+             return 0;
+        }
+    }
+    printf("Element not found\n");
+    
+}
+
