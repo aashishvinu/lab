@@ -1,0 +1,24 @@
+import java.util.StringTokenizer;
+
+public class IntegerTokenizer {
+    public static void main(String[] args) {
+        // Replace this line with your input string
+        String inputString = "1 2 3 4 5";
+
+        // Initialize StringTokenizer with the input string
+        StringTokenizer tokenizer = new StringTokenizer(inputString);
+
+        int sum = 0; // Initialize the sum to zero
+
+        // Iterate through the tokens and display each integer
+        while (tokenizer.hasMoreTokens()) {
+            String token = tokenizer.nextToken();
+            int num = Integer.parseInt(token);
+            System.out.println("Integer: " + num);
+            sum += num; // Add the integer to the sum
+        }
+
+        // Display the sum of all integers
+        System.out.println("Sum of all integers: " + sum);
+    }
+}
