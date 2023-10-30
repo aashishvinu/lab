@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ExceptionHandlingDemo {
+    public static void main(String[] args) {
+        try {
+            // Attempt to open and read a file that may not exist
+            FileReader fileReader = new FileReader("nonexistent.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            
+            // Attempt to read a line from the file (this will throw an exception)
+            String line = bufferedReader.readLine();
+            System.out.println("Read line from file: " + line);
+        } catch (IOException e) {
+            // Catch and handle the exception
+            System.err.println("An IOException occurred: " + e.getMessage());
+        } finally {
+            // Code in this block will be executed regardless of whether an exception occurred or not
+            System.out.println("Finally block executed.");
+        }
+    }
+}
