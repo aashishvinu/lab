@@ -1,24 +1,37 @@
+1. Initialize input string
+2. Read the input and store it in input string
+3. Initialize the sum and i = 0
+4. Create an object string input , tokenizer with input string as the argument
+5. While tokenizer has more tokens
+    Get the next token from tokenizer
+    Parse the token as an int and store it in num
+    Add num to sum
+6. Display the sum as the final result
+
+--------------------------------------------------------------------------------------------------
+
+//Save the file as Token.java
+
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class IntegerTokenizer {
+public class Token {
     public static void main(String[] args) {
-        // Replace this line with your input string
-        String inputString = "1 2 3 4 5";
-
-        // Initialize StringTokenizer with the input string
-        StringTokenizer tokenizer = new StringTokenizer(inputString);
-
-        int sum = 0; // Initialize the sum to zero
-
-        // Iterate through the tokens and display each integer
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Please enter a series of integers separated by spaces:");
+        String input = scanner.nextLine();
+        StringTokenizer tokenizer = new StringTokenizer(input);
+        int sum = 0;
+        int i = 1;
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
             int num = Integer.parseInt(token);
-            System.out.println("Integer: " + num);
-            sum += num; // Add the integer to the sum
+            System.out.println("["+i+"] Value : " + num);
+            sum += num;
+            i += 1
         }
-
-        // Display the sum of all integers
         System.out.println("Sum of all integers: " + sum);
     }
 }
+
