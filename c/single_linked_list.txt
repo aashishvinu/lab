@@ -68,6 +68,8 @@ void deleteEnd(struct Node** head);
 void deleteFront(struct Node** head);
 void addEnd(struct Node** head, int data);
 void addFront(struct Node** head, int data);
+void addAnywhere(struct Node** head, int data, int position);
+void deleteAnywhere(struct Node** head, int position);
 
 struct Node {
     int data;
@@ -75,16 +77,17 @@ struct Node {
 };
 int main() {
     struct Node* head = NULL;
-    int choice, data;
-
+    int choice, data,place;
     while (1) {
         printf("\nMenu:\n");
         printf("1. Add an element to the front\n");
         printf("2. Add an element to the end\n");
-        printf("3. Delete an element from the front\n");
-        printf("4. Delete an element from the end\n");
-        printf("5. Display the linked list\n");
-        printf("6. Exit\n");
+        printf("3. Add an element anywhere\n");
+        printf("4. Delete an element from the front\n");
+        printf("5. Delete an element from the end\n");
+        printf("6. Delete an element from anywhere\n");
+        printf("7. Display the linked list\n");
+        printf("8. Exit\n\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -100,15 +103,27 @@ int main() {
                 addEnd(&head, data);
                 break;
             case 3:
-                deleteFront(&head);
+                printf("Enter the data to add anywhere: ");
+                scanf("%d", &data);
+            	printf("Enter the index to add: ");
+                scanf("%d", &place);
+                addAnywhere(&head,data,place);
                 break;
             case 4:
-                deleteEnd(&head);
+                deleteFront(&head);
                 break;
             case 5:
-                displayList(head);
+                deleteEnd(&head);
                 break;
             case 6:
+                printf("Enter the index to delete: ");
+                scanf("%d", &place);
+            	deleteAnywhere(&head,place);
+            	break;
+            case 7:
+                displayList(head);
+                break;
+            case 8:
                 exit(0);
             default:
                 printf("Invalid choice. Please try again.\n");
@@ -131,7 +146,7 @@ void addFront(struct Node** head, int data) {
     struct Node* newNode = createNode(data);
     newNode->next = *head;
     *head = newNode;
-    printf("%d added to the front of the list.\n", data);
+    printf("\%d added to the front of the list.\n", data);
 }
 
 void addEnd(struct Node** head, int data) {
@@ -192,3 +207,56 @@ void displayList(struct Node* head) {
     }
     printf("NULL\n");
 }
+
+void addAnywhere(struct Node** head, int data, int position) {
+    struct Node* newNode = createNode(data);
+    if (position == 1) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+
+    struct Node* current = *head;
+    int i;
+    for (i = 1; i < position - 1 && current != NULL; i++) {
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        printf("Invalid position. Node can't be added.\n");
+    } else {
+        newNode->next = current->next;
+        current->next = newNode;
+        printf("%d added at position [%d].\n", data,position);
+    }
+}
+
+void deleteAnywhere(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is empty. Node can't be deleted.\n");
+        return;
+    }
+
+    if (position == 1) {
+        struct Node* temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+
+    struct Node* current = *head;
+    struct Node* prev = NULL;
+    int i;
+    for (i = 1; i < position && current != NULL; i++) {
+        prev = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        printf("Invalid position. Node can't be deleted.\n");
+    } else {
+        prev->next = current->next;
+        free(current);
+    }
+}
+
