@@ -1,3 +1,20 @@
+1.Create a class SharedResource with a private integer field value.
+2.Inside the SharedResource class, define synchronized methods:
+    increment(): Increment the value by 1.
+    decrement(): Decrement the value by 1.
+    getValue(): Return the current value of the shared resource.
+3.Create a class ThreadSynchronization:
+    a. In the main method:
+    Instantiate a SharedResource object as sharedResource.
+    Create two threads, thread1 and thread2:
+        thread1 increments the value by calling sharedResource.increment() in a loop.
+        thread2 decrements the value by calling sharedResource.decrement() in a loop.
+4.Start both threads using thread1.start() and thread2.start().
+5.Use thread1.join() and thread2.join() to wait for both threads to complete their tasks.
+6.After both threads have completed, print the final value of the shared resource using sharedResource.getValue().x
+
+--------------------------------------------------------------------------------------------------
+
 public class ThreadSynchronizationDemo {
     public static void main(String[] args) {
         SharedResource sharedResource = new SharedResource();
