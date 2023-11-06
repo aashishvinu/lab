@@ -1,0 +1,94 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SimpleCalculator {
+    private JFrame frame;
+    private JTextField displayField;
+    private String currentInput = "";
+    private double result = 0;
+    private char operator = ' ';
+
+    public SimpleCalculator() {
+        frame = new JFrame("Simple Calculator");
+        frame.setLayout(new BorderLayout());
+
+        displayField = new JTextField();
+        displayField.setHorizontalAlignment(JTextField.RIGHT);
+        displayField.setEditable(false);
+        frame.add(displayField, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        String[] buttonLabels = {
+            "7", "8", "9", "+",
+            "4", "5", "6", "-",
+            "1", "2", "3", "*",
+            "0", "/", "%", "="
+        };
+
+        for (String label : buttonLabels) {
+            JButton button = new JButton(label);
+            button.addActionListener(new ButtonClickListener());
+            buttonPanel.add(button);
+        }
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private class ButtonClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
+
+            if (command.matches("[0-9]")) {
+                currentInput += command;
+                displayField.setText(currentInput);
+            } else if (command.equals("+") || command.equals("-") || command.equals("*") || command.equals("/") || command.equals("%")) {
+                operator = command.charAt(0);
+                result = Double.parseDouble(currentInput);
+                currentInput = "";
+            } else if (command.equals("=")) {
+                try {
+                    double secondOperand = Double.parseDouble(currentInput);
+                    switch (operator) {
+                        case '+':
+                            result += secondOperand;
+                            break;
+                        case '-':
+                            result -= secondOperand;
+                            break;
+                        case '*':
+                            result *= secondOperand;
+                            break;
+                        case '/':
+                            if (secondOperand == 0) {
+                                throw new ArithmeticException("Divide by zero error");
+                            }
+                            result /= secondOperand;
+                            break;
+                        case '%':
+                            result %= secondOperand;
+                            break;
+                    }
+                    displayField.setText(String.valueOf(result));
+                } catch (NumberFormatException ex) {
+                    displayField.setText("Invalid input");
+                } catch (ArithmeticException ex) {
+                    displayField.setText("Divide by zero error");
+                }
+                currentInput = "";
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SimpleCalculator());
+    }
+}
