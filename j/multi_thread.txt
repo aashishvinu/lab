@@ -1,0 +1,62 @@
+import java.util.Random;
+class NumberGenerator implements Runnable {
+    private Random random = new Random();
+    
+    @Override
+    public void run() {
+        while (true) {
+            int number = random.nextInt(100);
+            System.out.println("Generated Number: " + number);
+            
+            if (number % 2 == 0) {
+                SquareThread square = new SquareThread(number);
+                Thread squareThread = new Thread(square);
+                squareThread.start();
+            } else {
+                CubeThread cube = new CubeThread(number);
+                Thread cubeThread = new Thread(cube);
+                cubeThread.start();
+            }try{
+            Thread.sleep(1000);
+       	 	}catch (InterruptedException e) {
+           	continue;
+        }
+        }
+    }
+}
+
+class SquareThread implements Runnable {
+    private int number;
+    
+    public SquareThread(int number) {
+        this.number = number;
+    }
+    
+    @Override
+    public void run() {
+        int squared = number * number;
+        System.out.println("Squared the even number: " + squared);
+    }
+}
+
+class CubeThread implements Runnable {
+    private int number;
+    
+    public CubeThread(int number) {
+        this.number = number;
+    }
+    
+    @Override
+    public void run() {
+        int cubed = number * number * number;
+        System.out.println("Cubed the odd number: " + cubed);
+    }
+}
+
+public class ThreadNum {
+    public static void main(String[] args) {
+        NumberGenerator numberGenerator = new NumberGenerator();
+        Thread numberGeneratorThread = new Thread(numberGenerator);
+        numberGeneratorThread.start();
+    }
+}
