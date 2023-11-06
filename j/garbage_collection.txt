@@ -9,3 +9,15 @@
 
 --------------------------------------------------------------------------------------------------
 
+public class GarbageCollectionDemo {
+    public static void main(String[] args) {
+        Object obj1, obj2;
+        obj1 = new Object();
+        obj2 = new Object();
+        obj1 = null;ance.
+        obj2 = null;
+
+        System.gc();
+        System.out.println("Garbage collection requested.");
+    }
+}
