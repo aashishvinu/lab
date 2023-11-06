@@ -15,7 +15,7 @@
 
 --------------------------------------------------------------------------------------------------
 
-public class ThreadSynchronizationDemo {
+public class ThreadSync {
     public static void main(String[] args) {
         SharedResource sharedResource = new SharedResource();
 
