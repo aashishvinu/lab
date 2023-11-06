@@ -19,4 +19,5 @@ jobs:
           python-version: 3.x  # Choose the Python version you need
 
       - name: Run Python Script
+        working-directory: ${{ github.workspace }}
         run: python py.py 
