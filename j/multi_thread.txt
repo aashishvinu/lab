@@ -24,7 +24,7 @@ class NumberGenerator implements Runnable {
     
     @Override
     public void run() {
-        while (true) {
+    for (int i = 0; i < 10; i++) {
             int number = random.nextInt(100);
             System.out.println("Generated Number: " + number);
             
