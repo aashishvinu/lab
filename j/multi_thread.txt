@@ -1,3 +1,23 @@
+1.Create a NumberGenerator class that implements the Runnable interface. This class is responsible for generating random numbers continuously.
+    Inside the run method of NumberGenerator:
+    a. Generate a random integer between 0 and 99 and print the generated number
+    b. Check if the generated number is even (number % 2 == 0).
+    c. If it's even, create a new SquareThread with the generated number and start it in a new thread.
+    d. If it's odd, create a new CubeThread with the generated number and start it in a new thread.
+    e. Sleep for 1 second to control the rate of number generation.
+
+2.Create a SquareThread class that implements the Runnable interface. This class calculates and prints the square of the input number.
+    Inside the run method of SquareThread, calculate the square of the input number and print the result.
+
+3.Create a CubeThread class that implements the Runnable interface. This class calculates and prints the cube of the input number.
+    Inside the run method of CubeThread, calculate the cube of the input number and print the result.
+
+4.In the main method of the ThreadNum class:
+    a. Create an instance of NumberGenerator.
+    b. Create a new thread for the NumberGenerator instance and start it
+
+--------------------------------------------------------------------------------------------------
+
 import java.util.Random;
 class NumberGenerator implements Runnable {
     private Random random = new Random();
