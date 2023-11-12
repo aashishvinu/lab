@@ -26,3 +26,9 @@ a:visited {
     color: #ffffff;
     text-decoration: none;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
