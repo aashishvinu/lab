@@ -1,0 +1,56 @@
+1. Read size of the array as n , sorted array as arr[] and element to be searched as key
+2. Declare Boolean found as false
+3. Set left = 0 and right = n
+4. While left <= right
+    calculate mid as (left+right)/2
+    if (arr[mid] == key):
+      set found = True
+    if (array[mid] < key):
+      set left = mid + 1 
+    else
+      set right = mid - 1
+5. if found:
+    print key found
+  else:
+    print key not found
+
+--------------------------------------------------------------------------------------------------
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class binary{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        int[] array = new int[size];
+
+        System.out.println("Enter the elements of the array in sorted order:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+        System.out.print("Enter the element to search: ");
+        int key = scanner.nextInt();
+                
+        int left = 0;
+        int right = size;
+        boolean found = false;
+        while (left <= right) {
+           	int mid = (left + right) / 2;
+           	if (array[mid] == key) {
+			found = true;
+         	break;
+            } else if (array[mid] < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+      	}
+      	if (found){
+			System.out.println("Element " + key + " found in the array");
+      	}else{
+      		System.out.println("Element " + key + " not found in the array");
+      	}
+}}
+    
