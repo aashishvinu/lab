@@ -1,10 +1,12 @@
+===== calc.y =====
+
 %{
 #include <stdio.h>
-int flag = 0;  // For error handling
+int flag = 0;
 %}
 
 %union {
-    int ival;   // Token semantic value type
+    int ival;
 }
 
 %token <ival> NUMBER
@@ -43,3 +45,23 @@ void yyerror(char *s) {
     printf("\nEntered arithmetic expression is Invalid\n");
     flag = 1;
 }
+
+
+===== lex.l =====
+
+%{
+#include "y.tab.h"
+#include <stdlib.h>
+%}
+
+[0-9]+      { yylval.ival = atoi(yytext); return NUMBER; }
+[ \t]+      ;
+\n          { return 0; }
+.           { return yytext[0]; }
+%%
+
+===== run =====
+yacc -d calc.y
+lex lex.l
+gcc lex.yy.c y.tab.c -o calc
+./calc

@@ -1,4 +1,0 @@
-yacc -d file.y
-lex lex.l
-gcc lex.yy.c y.tab.c -o out
-./out
