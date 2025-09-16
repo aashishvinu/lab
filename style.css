@@ -10,6 +10,7 @@ body {
     text-align: center;
     overflow: hidden;
 }
+
 a {
     font-size: 25px;
     margin-bottom: 5px;
@@ -32,3 +33,21 @@ a:visited {
     flex-direction: column;
 }
 
+.container {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 1em;
+}
+
+.container a {
+    display: block;
+    font-size: 1em;
+    word-break: break-all;
+    margin-bottom: 0.5em;
+}
+
+@media (max-width: 600px) {
+    .container a {
+        font-size: 0.85em;
+    }
+}
