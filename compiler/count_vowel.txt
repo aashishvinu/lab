@@ -1,0 +1,34 @@
+===== count_vowel.l =====
+%{
+#include <stdio.h>
+int vow_count = 0;
+int const_count = 0;
+%}
+%%
+[aeiouAEIOU]             { vow_count++; }
+[a-zA-Z]      { const_count++; }
+.|\n                        { /* ignore other chars */ }
+%%
+int yywrap() {
+    return 1;
+}
+int main() {
+    printf("Enter the string of vowels and consonants:\n");
+    yylex();
+    printf("\nNumber of vowels are: %d\n", vow_count);
+    printf("Number of consonants are: %d\n", const_count);
+    return 0;
+}
+
+===== output.txt =====
+Enter the string of vowels and consonants:
+compiler design
+
+Number of vowels are: 5
+Number of consonants are: 9
+
+===== run =====
+nano count_vowel.l
+lex count_vowel.l
+gcc lex.yy.c -o count_vowel -ll
+./count_vowel

@@ -1,0 +1,49 @@
+===== para_match.l =====
+
+%{
+#include <stdio.h>
+int cnt1 = 0, cnt2 = 0, cnt3 = 0;
+extern FILE *yyin;
+%}
+%%
+\(     { cnt1++; }
+\)     { cnt1--; }
+\[     { cnt2++; }
+\]     { cnt2--; }
+\{     { cnt3++; }
+\}     { cnt3--; }
+[a-zA-Z] {}
+\n {
+    if (cnt1 == 0 && cnt2 == 0 && cnt3 == 0)
+        printf("matching \n");
+    else
+        printf("not matching \n");
+
+    cnt1 = cnt2 = cnt3 = 0;}
+. {}
+%%
+int main(){
+    yyin = fopen("input.txt", "r");
+    if (!yyin) {
+        perror("Cannot open input.txt");
+        return 1;}
+    yylex();
+    fclose(yyin);
+    return 0;
+}
+
+===== input.txt =====
+(a+b)
+(a{)
+({})
+
+===== output.txt =====
+matching
+not matching
+matching
+
+===== run =====
+nano para_match.l
+lex para_match.l
+gcc lex.yy.c -o para_match -ll
+./para_match

@@ -1,0 +1,48 @@
+===== yacc_ident.l =====
+
+%{
+#include "y.tab.h"
+%}
+%%
+[a-zA-Z_][a-zA-Z0-9_]*    { return IDENTIFIER; }
+[0-9][a-zA-Z0-9_]*        { return INVALID; }
+[ \t]+                   { /* skip whitespace */ }
+[\n]                     { return 0; }
+.                        { return INVALID; }
+%%
+int yywrap() {
+    return 1;
+}\
+
+===== yacc_ident.y =====
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+%token IDENTIFIER
+%token INVALID
+%%
+input:
+    IDENTIFIER { printf("Valid identifier\n"); }
+    | INVALID  { printf("Invalid identifier\n"); } ;
+%%
+int main() {
+    printf("Enter an identifier: ");
+    yyparse();
+    return 0;
+}
+int yyerror(const char* s) {
+    return 0;
+}
+
+===== output.txt =====
+Enter an identifier: 123
+Invalid identifier
+
+===== run =====
+nano yacc_ident.l
+nano yacc_ident.y
+yacc -d yacc_ident.y
+lex yacc_ident.l
+gcc y.tab.c lex.yy.c -o yacc_ident -ll -ly
+./yacc_ident
